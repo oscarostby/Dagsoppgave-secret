@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+</head>
+<body>
+    <h1>Test Page</h1>
+    <div id="testData"></div>
+
+    <script>
+        fetch('http://localhost:3000/')
+            .then(response => response.json())
+            .then(data => {
+                const testDataDiv = document.getElementById('testData');
+                // Display title
+                testDataDiv.innerHTML += `<h2>Title: ${data.tittel}</h2>`;
+                // Display numbers
+                testDataDiv.innerHTML += `<ul>`;
+                data.data.forEach(number => {
+                    testDataDiv.innerHTML += `<li>${number}</li>`;
+                });
+                testDataDiv.innerHTML += `</ul>`;
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+    
+</body>
+</html>
